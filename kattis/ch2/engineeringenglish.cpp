@@ -14,22 +14,26 @@ int main() {
 	cin.tie(0);
 
 	string s;
-	int last = 0;
-	vector<string> ans;
+	set<string> S;
 	while(getline(cin, s)){
-		deb(s);
-		if(s == ""){
-			for(auto str: ans)cout << str << '\n';
-			ans.clear();
-		}else{
-			vector<char> stars;
-			for(auto i: s)if(i == '*')stars.push_back(i);
-			string now(s.size(), '.');
-			for(int i = last; i < last + stars.size(); i++)now[i] = '*';
-			last += stars.size();
-			reverse(now.begin(), now.end());
-			ans.push_back(now);
+		vector<string> v;
+		s += " ";
+		string t;
+		for(int i = 0; i < (int)s.size(); i++){
+			if(s[i] == ' ')v.push_back(t), t.clear();
+			else t += s[i];
 		}
+		// deb(v);
+		for(auto str: v){
+			string now;
+			for(auto ch : str)now += tolower(ch);
+			if(S.find(now) != S.end())cout << ". ";
+			else {
+				cout << str << " ";
+				S.insert(now);
+			}
+		}
+		cout << '\n';
 	}
 	return 0;
 }

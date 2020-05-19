@@ -29,7 +29,7 @@ int main() {
 				if(a[j] < a[min])min = j;
 			}
 			ans += min - i;
-			for(int j = min; j >= i + 1; j--)swap(a[j], a[j - 1]);
+			for(int j = min; j >= i - 1; j--)swap(a[j], a[j - 1]);
 		}
 		cout << a[0] << ' ' << ans << '\n';
 	}
