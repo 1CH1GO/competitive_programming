@@ -13,26 +13,22 @@ int main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 
+	map<string, string> m;
 	string s;
-	int last = 0;
-	vector<string> ans;
 	while(getline(cin, s)){
-		// deb(s);
-		if(s == ""){
-			cout << '\n';
-			ans.clear();
-			last = 0;
-			continue;
-		}else{
-			vector<char> stars;
-			for(auto i: s)if(i == '*')stars.push_back(i);
-			string now(s.size(), '.');
-			for(int i = last; i < last + stars.size(); i++)now[i] = '*';
-			last += stars.size();
-			reverse(now.begin(), now.end());
-			for(auto i:now)cout << i;
-			cout << '\n';
+		if(s == "")break;
+		vector<string> words;
+		s += " ";
+		string t;
+		for(auto ch: s){
+			if(ch == ' ')words.push_back(t), t.clear();
+			else t += ch;
 		}
+		m[words[1]] = words[0];
+	}
+	while(getline(cin, s)){
+		if(m[s].size())cout << m[s] << '\n';
+		else cout << "eh\n";
 	}
 	return 0;
 }
